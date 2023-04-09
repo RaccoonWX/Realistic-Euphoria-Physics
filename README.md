@@ -10,8 +10,11 @@ Well-optimized for optimal performance on your FiveM server
 
 ## Installation
 Download the latest release of the script from the GitHub repository.
+
 Extract the contents of the archive to your FiveM server's resources folder.
+
 Add start Realistic_Euphoria_Ragdoll to your server.cfg file.
+
 Restart your FiveM server.
 
 ## Customization
