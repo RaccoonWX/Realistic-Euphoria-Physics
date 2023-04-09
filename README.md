@@ -23,4 +23,4 @@ Additionally, the event listeners in the client script can be customized to adju
 If you encounter any issues or have any questions about the script, please feel free to open an issue on the GitHub repository or contact me directly.
 
 ## License
-This ragdoll script is licensed under the MIT License. Feel free to use and modify this script as needed, but please credit the original author if sharing any modifications or derivatives.
+This ragdoll script is licensed under the [MIT License](https://opensource.org/licenses/MIT). Feel free to use and modify this script as needed, but please credit the original author if sharing any modifications or derivatives.
