@@ -1,6 +1,8 @@
 # Realistic Euphoria Physics
 This is a customizable and well-optimized ragdoll script for FiveM. With adjustable physics settings and event triggers for a range of gameplay scenarios, this script offers a dynamic and engaging gameplay experience for players.
 
+<img src="https://profile-counter.glitch.me/Realistic-Euphoria-Physics/count.svg" />
+
 ## Features
 Adjustable physics settings for different bones in the body, including strength, damping, inertia, elasticity, and damping free settings
 Event listeners that trigger the ragdoll effect when a player or NPC falls, gets hit, enters melee combat, or is hit by a vehicle
