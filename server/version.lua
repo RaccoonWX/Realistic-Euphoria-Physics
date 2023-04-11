@@ -6,9 +6,8 @@ local label =
   ||    +-+-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
   ||    |R|e|a|l|i|s|t|i|c| |E|u|p|h|o|r|i|a| |P|h|y|s|i|c|s|
   ||    +-+-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+  																													
-  ||       				Created by TheRaccoon#0001
+  ||       		Created by TheRaccoon#0001
   ||
-   \\
   ]]  
 Citizen.CreateThread(function()
 	local CurrentVersion = GetResourceMetadata(GetCurrentResourceName(), 'version', 0)
