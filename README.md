@@ -1,4 +1,6 @@
 # Realistic Euphoria Physics
+## KEEP IN MIND THIS IS BEING REWORKED, THE SCRIPT IS BROKEN ONCE YOU MAKE FIXES TO IT. I AM TRYING TO RESOLVE THIS STILL!
+
 This is a customizable and well-optimized ragdoll script for FiveM. With adjustable physics settings and event triggers for a range of gameplay scenarios, this script offers a dynamic and engaging gameplay experience for players.
 
 <img src="https://profile-counter.glitch.me/Realistic-Euphoria-Physics/count.svg" />
