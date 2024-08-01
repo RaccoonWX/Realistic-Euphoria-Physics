@@ -59,7 +59,8 @@ local grabStartTime = nil
 
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(100) -- Too many players getting 'Reliable network overflow'? Increase the wait time to fix this.
+        Citizen.Wait(100)
+        
         local playerPed = GetPlayerPed(-1)
         local pedTable = {}
 
@@ -70,60 +71,53 @@ Citizen.CreateThread(function()
         end
 
         for _, ped in ipairs(pedTable) do
-            if IsPedR
-            Citizen.CreateThread(function()
-                while true do
-                Citizen.Wait(100) -- Too many players getting 'Reliable network overflow'? Increase the wait time to fix this.
-                local playerPed = GetPlayerPed(-1)
-                local pedTable = {}
-                for ped in EnumeratePeds() do
-                    if not IsPedAPlayer(ped) then
-                        table.insert(pedTable, ped)
-                    end
+            if IsPedRagdoll(ped) then
+                local netID = PedToNet(ped)
+                TriggerServerEvent("realistic_ragdoll:applyRagdollToPed", netID)
+            elseif IsPedHitByVehicle(ped) then
+                local vehicle = GetVehiclePedIsIn(ped, true)
+                local animDict = "nm@on_foot@action@vehicle@context@dispatch@180@2h@base"
+                local animName = "grab_on_vehicle"
+                
+                if not IsEntityPlayingAnim(ped, animDict, animName, 3) then
+                    MakePedGrabVehicle(ped, vehicle)
+                    grabStartTime = GetGameTimer()
                 end
-            
-                for _, ped in ipairs(pedTable) do
-                    if IsPedRagdoll(ped) then
-                        local netID = PedToNet(ped)
-                        TriggerServerEvent("realistic_ragdoll:applyRagdoll", netID)
-                    elseif IsPedHitByVehicle(ped) then
-                        local vehicle = GetVehiclePedIsIn(ped, true)
-                        if not IsEntityPlayingAnim(ped, animDict, animName, 3) then
-                            MakePedGrabVehicle(ped, vehicle)
-                            grabStartTime = GetGameTimer()
-                        end
-                    end
-                end
-            
-                for i = 0, 255 do
-                    if NetworkIsPlayerActive(i) then
-                        local player = GetPlayerPed(i)
-                        if IsPedRagdoll(player) then
-                            local netID = PedToNet(player)
-                            TriggerServerEvent("realistic_ragdoll:applyRagdoll", netID)
-                        elseif IsPedHitByVehicle(player) then
-                            local vehicle = GetVehiclePedIsIn(player, true)
-                            if not IsEntityPlayingAnim(player, animDict, animName, 3) then
-                                MakePedGrabVehicle(player, vehicle)
-                                grabStartTime = GetGameTimer()
-                            end
-                        end
-                    end
-                end
-            
-                if grabStartTime ~= nil then
-                    local elapsedTime = GetGameTimer() - grabStartTime
-                    local ped = GetPlayerPed(-1)
-                    local vehicle = GetVehiclePedIsIn(ped, false)
-            
-                    if vehicle ~= 0 and vehicle ~= nil then
-                        local speed = GetEntitySpeed(vehicle) * 3.6
-            
-                        if elapsedTime > 5000 or speed < 2.0 then
-                            ClearPedTasks(ped)
-                            grabStartTime = nil
-                        end
+            end
+        end
+
+        for i = 0, 255 do
+            if NetworkIsPlayerActive(i) then
+                local player = GetPlayerPed(i)
+                if IsPedRagdoll(player) then
+                    local netID = PedToNet(player)
+                    TriggerServerEvent("realistic_ragdoll:applyRagdoll", netID)
+                elseif IsPedHitByVehicle(player) then
+                    local vehicle = GetVehiclePedIsIn(player, true)
+                    local animDict = "nm@on_foot@action@vehicle@context@dispatch@180@2h@base"
+                    local animName = "grab_on_vehicle"
+                    
+                    if not IsEntityPlayingAnim(player, animDict, animName, 3) then
+                        MakePedGrabVehicle(player, vehicle)
+                        grabStartTime = GetGameTimer()
                     end
                 end
             end
-        end)
+        end
+
+        if grabStartTime ~= nil then
+            local elapsedTime = GetGameTimer() - grabStartTime
+            local ped = GetPlayerPed(-1)
+            local vehicle = GetVehiclePedIsIn(ped, false)
+
+            if vehicle ~= 0 and vehicle ~= nil then
+                local speed = GetEntitySpeed(vehicle) * 3.6
+
+                if elapsedTime > 5000 or speed < 2.0 then
+                    ClearPedTasks(ped)
+                    grabStartTime = nil
+                end
+            end
+        end
+    end
+end)
