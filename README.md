@@ -4,7 +4,7 @@ This is a customizable and well-optimized ragdoll script for FiveM. With adjusta
 
 <img src="https://profile-counter.glitch.me/Realistic-Euphoria-Physics/count.svg" />
 
-Questions? Feel free to join the [Discord](https://discord.gg/xeT7fMQCna) for help!
+Questions? Contact me on Discord RaccoonWX.
 
 ## Features
 Adjustable physics settings for different bones in the body, including strength, damping, inertia, elasticity, and damping free settings
