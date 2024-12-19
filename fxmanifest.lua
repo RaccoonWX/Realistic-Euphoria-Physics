@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 
 author 'TheRaccoon'
-description 'This is to incrase the euphoria physics trying to mimic GTA IV.'
+description 'This is to increase the euphoria physics trying to mimic GTA IV.'
 version 'v1.0.2'
 
 client_script 'client/client.lua'
